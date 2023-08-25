@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser')
 const express = require('express');
 const { usuario } = require('./models');
 
+
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -19,31 +21,89 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
 
-app.use(cookieParser());
-app.use(
-  expressJWT({
-    secret: process.env.SECRET,
-    algorithms: ["HS256"],
-    getToken: req => req.cookies.token
-  }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/"] })
-);
+  app.use(cookieParser());
+  app.use(
+    expressJWT({
+      secret: process.env.SECRET,
+      algorithms: ["HS256"],
+      getToken: req => req.cookies.token
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/cadastrar, /listar"] })
+  );
 
-app.get('/autenticar', async function(req, res){
-  res.render('autenticar');
+
+   app.get('/usuario/cadastrar', async function(req, res){
+  res.render('cadastrar');
 })
 
-app.get('/', async function(req, res){
-  res.render("home")
-})
+    app.post('/usuario/cadastrar', async function(req, res){
+      if(req.body.senha == req.body.confirme){
+      await usuario.create(req.body)
+      res.redirect('/usuarios/listar')
 
-app.post('/logar', (req, res) => {
-   res.send("vc esta logado")
-})
 
-app.post('/deslogar', function(req, res) {
-  
-})
+      res.json("cadastro feito com sucesso")
+      }else{
+        res.status(500).json("senha incorreta")
+      }
 
-app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
-});
+    
+    })
+    app.get('/usarios/listar', async function(req, res){
+      try{
+        var usuarios = await usuario.findAll();
+      res.render('home', { usuarios });
+      } catch(err){
+        console.error(err);
+        res.status(500).json({mensage: 'ocorreu um erro ao buscar os usuarios'})
+      }
+
+      
+    })
+
+    
+
+
+
+    app.post('/logar', (req, res) => {
+      let usuario = req.body.nome
+      let password=  req.body.senha
+      
+        if (usuario == "karol@gmail.com" && password == "1234"){
+        const id= 1 
+        const token= jwt.sign({id}, process.env.SECRET, {
+          expiresIn: 300
+        }) 
+      
+        res.cookie('logar', token, {httpOlin: true});
+        return res.json ({
+          usuario: usuario, 
+          token: token
+        })
+      }
+
+      res.status(500).json ({mensagem: "Não foi possivei logar"})
+      
+    })
+
+
+    app.post('/deslogar', function(req, res) {
+      res.cookie('logar', null, {httpOlin: true})
+      res.json ({ deslogado:true})
+    })
+
+    
+
+    app.get('/autenticar', async function(req, res){
+      res.render('autenticar');
+    })
+
+      app.get('/', async function(req, res){
+        res.render("home")
+      })
+
+
+
+  app.listen(3000, function() {
+    console.log('App de Exemplo escutando na porta 3000!')
+  });
+

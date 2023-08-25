@@ -6,28 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
   <title>Autenticação</title>
+  
 </head>
 <body>
-  <form method="post" action="/logar" >
-    <h1 class="a11y-hidden">Login Form</h1>
-    <div>
-      <label class="label-email">
-        <input type="text" class="text" name="usuario" placeholder="Usuario" />
-        <span class="required">Usuario</span>
-      </label>
+    <div class="page">
+        <form method="POST" class="formLogin" action="/logar">
+            <h1>Login</h1>
+            <p>Digite os seus dados de acesso.</p>
+            <label for="email">E-mail</label>
+            <input type="email" name="nome" placeholder="Digite seu e-mail" autofocus="true"  />
+            <label for="password">Senha</label>
+            <input type="password" name="senha" placeholder="Digite seu e-mail" />
+            <a href="/">Esqueci minha senha</a>
+            <input type="submit" value="Entrar" class="btn" />
+        </form>-
     </div>
-    
-    <div>
-      <label class="label-password">
-        <input type="text" class="text" name="password" placeholder="Password" tabindex="2" required />
-        <span class="required">Senha:</span>
-      </label>
-    </div>
-    <input type="submit" value="Log In" />
-   
-    
-  
-
-  </form>
 </body>
 </html>
