@@ -27,7 +27,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/cadastrar, /listar"] })
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/cadastrar", "/listar"] })
   );
 
 
@@ -51,7 +51,7 @@ app.use(express.static('public'));
     app.get('/usarios/listar', async function(req, res){
       try{
         var usuarios = await usuario.findAll();
-      res.render('home', { usuarios });
+      res.render('index', { usuarios });
       } catch(err){
         console.error(err);
         res.status(500).json({mensage: 'ocorreu um erro ao buscar os usuarios'})
@@ -60,10 +60,7 @@ app.use(express.static('public'));
       
     })
 
-    
-
-
-
+  
     app.post('/logar', (req, res) => {
       let usuario = req.body.nome
       let password=  req.body.senha
