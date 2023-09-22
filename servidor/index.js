@@ -27,31 +27,32 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/cadastrar", "/listar"] })
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar"] })
   );
 
 
-   app.get('/usuario/cadastrar', async function(req, res){
-  res.render('cadastrar');
-})
+  app.get('/usuarios/cadastrar', async function(req, res){
+    res.render('cadastrar');
+  })
 
-    app.post('/usuario/cadastrar', async function(req, res){
-      if(req.body.senha == req.body.confirme){
-      await usuario.create(req.body)
-      res.redirect('/usuarios/listar')
+  app.post('/usuarios/cadastrar', async function(req, res){
+    if(req.body.senha == req.body.confirme){
+    await usuario.create(req.body)
+    res.redirect('/usuarios/listar')
 
 
-      res.json("cadastro feito com sucesso")
-      }else{
-        res.status(500).json("senha incorreta")
-      }
+    res.json("cadastro feito com sucesso")
+    }else{
+      res.status(500).json("senha incorreta")
+    }
 
-    
-    })
-    app.get('/usarios/listar', async function(req, res){
+
+  })
+  
+    app.get('/usuarios/listar', async function(req, res){
       try{
         var usuarios = await usuario.findAll();
-      res.render('index', { usuarios });
+        res.render('home', { usuarios });
       } catch(err){
         console.error(err);
         res.status(500).json({mensage: 'ocorreu um erro ao buscar os usuarios'})
@@ -63,7 +64,7 @@ app.use(express.static('public'));
   
     app.post('/logar', (req, res) => {
       let usuario = req.body.nome
-      let password=  req.body.senha
+      let password = req.body.senha
       
         if (usuario == "karol@gmail.com" && password == "1234"){
         const id= 1 
@@ -71,7 +72,7 @@ app.use(express.static('public'));
           expiresIn: 300
         }) 
       
-        res.cookie('logar', token, {httpOlin: true});
+        res.cookie('token', token, {httpOlin: true});
         return res.json ({
           usuario: usuario, 
           token: token
