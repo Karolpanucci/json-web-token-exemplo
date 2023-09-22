@@ -49,18 +49,15 @@ app.use(express.static('public'));
 
   })
   
-    app.get('/usuarios/listar', async function(req, res){
-      try{
-        var usuarios = await usuario.findAll();
-        res.render('home', { usuarios });
-      } catch(err){
-        console.error(err);
-        res.status(500).json({mensage: 'ocorreu um erro ao buscar os usuarios'})
-      }
-
-      
-    })
-
+  app.get('/usuarios/listar', async function(req, res){
+    try {
+      var usuarios = await Usuario.findAll();
+      res.render('home', { usuarios });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
+    }
+  })
   
     app.post('/logar', (req, res) => {
       let usuario = req.body.nome
