@@ -6,10 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+  /* Outros estilos */
+
+  /* Estilo para o botão de deslogar no centro da tela */
+  .center-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Isso tornará o botão centralizado verticalmente */
+  }
+  
+  .center-button form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .center-button form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #8c00ff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  }
+
+  .center-button form input[type="submit"]:hover {
+      background-color: #0057b3f1;
+  }
+</style>
 <body>
   
-  <form action="/deslogar" method="post">
-    <input type="submit" value="Deslogar">
+  <div class="center-button">
+    <form action="/deslogar" method="post">
+        <input type="submit" value="Deslogar">
+    </form>
+</div>
   </form>
+ 
 </body>
 </html>

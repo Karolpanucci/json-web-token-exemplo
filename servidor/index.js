@@ -34,7 +34,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar"] })
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar"  ] })
   );
 
 

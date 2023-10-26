@@ -1,97 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #023047
-}
-
 .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+  background-image: url('https://images5.alphacoders.com/548/548279.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .formLogin {
-    display: flex;
-    flex-direction: column;
-    background-color: #c61357b7;
-    border-radius: 7px;
-    padding: 40px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-    gap: 5px;
-    color: #fff;
+  font-family: 'SuaFontePersonalizada', sans-serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 350px;
+  color: #fff;
 }
 
-.areaLogin img {
-  width: 420px;
-}
+
 
 .formLogin h1 {
-  padding: 0;
-  margin: 0;
-  font-weight: 500;
-  font-size: 2.3em;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .formLogin p {
-  display: inline-block;
   font-size: 14px;
-  color: #666;
-  margin-bottom: 25px;
-}
-
-.formLogin input {
-  padding: 15px;
-  font-size: 14px;
-  border: 1px solid #ccc;
   margin-bottom: 20px;
-  margin-top: 5px;
-  border-radius: 4px;
-  transition: all linear 160ms;
-  outline: none;
-}
-
-.formLogin input:focus {
-  border: 1px solid #f72585;
 }
 
 .formLogin label {
+  display: block;
   font-size: 14px;
-  font-weight: 600;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.formLogin input[type="text"],
+.formLogin input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.formLogin input[type="text"]::placeholder,
+.formLogin input[type="password"]::placeholder {
+  color: #ccc;
 }
 
 .formLogin a {
-  display: inline-block;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: #555;
-  transition: all linear 160ms;
+  color: #8c00ff;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
 }
 
-.formLogin a:hover {
-  color: #f72585;
-}
-
-.btn {
-  background-color: #3b0a52;
+.formLogin input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #8c00ff;
+  border: none;
+  border-radius: 5px;
   color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  border: none !important;
-  transition: all linear 160ms;
   cursor: pointer;
-  margin: 0 !important;
-
+  transition: background-color 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  background-color: #ff0676;
+.formLogin input[type="submit"]:hover {
+  background-color: #0057b3f1;
+}
 
+.fundo {
+  font-family: 'SuaFontePersonalizada', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://images5.alphacoders.com/548/548279.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.universe-theme {
+  background: rgba(0, 0, 0, 0.774);
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px; /* Define o limite de largura para o contêiner */
+  margin: 0 auto; /* Centraliza o contêiner */
+}
+
+.card {
+  width: calc(33.33% - 20px); /* Configura a largura para três colunas e margens entre elas */
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  background: rgba(131, 54, 194, 0.351); /* Fundo semi-transparente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h3 {
+  margin: 0;
 }
