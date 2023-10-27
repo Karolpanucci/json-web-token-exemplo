@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
 
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser') 
 
 const express = require('express');
 const { usuario } = require('./models');
@@ -76,7 +76,7 @@ app.use(express.static('public'));
       if(eu){
        const id = 1;
        const token = jwt.sign({id}, process.env.SECRET, {
-        expiresIn:300 
+        expiresIn:3000 
        });
        res.cookie('token', token, {httpOnly: true}); 
        return res.json({
