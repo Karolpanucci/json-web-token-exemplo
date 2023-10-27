@@ -34,7 +34,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar"  ] })
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar",  ] })
   );
 
 
@@ -55,18 +55,18 @@ app.use(express.static('public'));
         }
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'A senha esta errada' });
+        res.status(500).json({ message: 'ihhh rapaz essa senha esta certa mesmo? 🤨' });
     }}})
   
  
     app.get('/usuario/listar', async function(req,res){
       try{
-      var usuarios = await usuario.findAll(); // Recupera todos os usuários do banco de dados
-      res.render('listar', {usuarios}); // Renderiza a página 'listar' com a lista de usuários
+      var usuarios = await usuario.findAll(); 
+      res.render('listar', {usuarios}); 
     
     }catch (err) {
       console.error(err);
-      res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
+      res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário. ☹️' });
     }
     });
   
@@ -76,21 +76,21 @@ app.use(express.static('public'));
       if(eu){
        const id = 1;
        const token = jwt.sign({id}, process.env.SECRET, {
-        expiresIn:300 // Gera um token JWT com uma duração de 300 segundos (5 minutos)
+        expiresIn:300 
        });
-       res.cookie('token', token, {httpOnly: true}); // Define um cookie 'logar' com o token JWT
+       res.cookie('token', token, {httpOnly: true}); 
        return res.json({
         usuario: req.body.usuario,
-        token: token // Retorna o token JWT e informações do usuário em uma resposta JSON
+        token: token 
        });
       }
-      res.status(500).json({mensagem: "você não foi logado"}); // Retorna um erro se a autenticação falhar
+      res.status(500).json({mensagem: "ihhh rapaz não ta indo ☹️"}); 
     })
 
 
     app.post('/deslogar', function(req, res) {
-      res.cookie('logar', null, {httpOnly: true}); // Remove o cookie 'logar' para deslogar o usuário
-      res.json({deslogado:true}); // Retorna uma resposta JSON indicando que o usuário foi deslogado
+      res.cookie('token', null, {httpOnly: true}); 
+      res.json({deslogado:true})
     })
 
     
