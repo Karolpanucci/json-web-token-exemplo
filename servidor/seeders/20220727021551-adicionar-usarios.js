@@ -3,7 +3,7 @@ const crypto = require('../crypto');
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('usuarios', [
-      { nome: 'Karol@gmail.com', senha: crypto.encrypt ( '123') },
+      { nome: 'Karol@gmail.com', senha: crypto.encrypt ( '1212') },
   
     ], {});
   },
