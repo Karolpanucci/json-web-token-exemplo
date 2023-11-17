@@ -9,7 +9,17 @@ console.log(decrypted_key);
 require("dotenv-safe").config();
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
-const cors = require('cors');
+const cors = require('cors'); 
+const corsOptions = {
+  //CLIENTE  QUE VAI POSSUIR O ACESSO
+    origin:"http://localhost:3000",
+    // O QUE O CLIENTE VAI PODER ACESSAR
+    methods: "GET, PUT, POST, DELETE",
+    allowedHeaders: "Content-Type ,  Authorization",
+    credentials: true
+
+}
+// com o cors vc abre uma porta no servidor para dar acesso para o cliente, e so pode acessar o que o cors permite
 
 var cookieParser = require('cookie-parser') 
 
@@ -20,6 +30,7 @@ const { usuario } = require('./models');
 
 const app = express();
 
+app.use(cors(corsOptions))
 app.set('view engine', 'ejs');
 
 app.use(cors());
@@ -34,7 +45,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar",  ] })
+    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/listar"  ] })
   );
 
 
@@ -62,7 +73,7 @@ app.use(express.static('public'));
     app.get('/usuario/listar', async function(req,res){
       try{
       var usuarios = await usuario.findAll(); 
-      res.render('listar', {usuarios}); 
+      res.json(usuarios); 
     
     }catch (err) {
       console.error(err);
@@ -78,7 +89,10 @@ app.use(express.static('public'));
        const token = jwt.sign({id}, process.env.SECRET, {
         expiresIn:3000 
        });
-       res.cookie('token', token, {httpOnly: true}); 
+       res.cookie('token', token, {httpOnly: true}).json({
+        nome: eu.nome ,
+        token: token
+       }) 
        return res.json({
         usuario: req.body.usuario,
         token: token 
