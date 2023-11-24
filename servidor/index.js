@@ -93,10 +93,9 @@ app.use(express.static('public'));
         nome: eu.nome ,
         token: token
        }) 
-       return res.json({
-        usuario: req.body.usuario,
-        token: token 
-       });
+       //return res.json(eu);
+
+
       }
       res.status(500).json({mensagem: "ihhh rapaz não ta indo ☹️"}); 
     })
@@ -119,7 +118,7 @@ app.use(express.static('public'));
 
 
 
-  app.listen(3000, function() {
+  app.listen(4000, function() {
     console.log('App de Exemplo escutando na porta 3000!')
   });
 
