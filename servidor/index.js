@@ -45,7 +45,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuario/listar"  ] })
+    }).unless({ path: ["/autenticar", "/user/authenticated", "/deslogar", "/usuario/listar"  ] })
   );
 
 
@@ -81,7 +81,7 @@ app.use(express.static('public'));
     }
     });
   
-    app.post('/logar', async (req, res) => {
+    app.post('/user/authenticated', async (req, res) => {
       const eu = await usuario.findOne({ where: { nome: req.body.nome, senha:crypto.encrypt( req.body.senha) } });
     
       if(eu){
