@@ -45,7 +45,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/user/authenticated", "/deslogar", "/usuario/listar"  ] })
+    }).unless({ path: ["/autenticar", "/user/authenticated", "/deslogar", "/usuario/listar", "/usuarios/cadastrar"  ] })
   );
 
 
@@ -81,13 +81,13 @@ app.use(express.static('public'));
     }
     });
   
-    app.post('/user/authenticated', async (req, res) => {
+    app.post('/autenticar', async (req, res) => {
       const eu = await usuario.findOne({ where: { nome: req.body.nome, senha:crypto.encrypt( req.body.senha) } });
     
       if(eu){
        const id = 1;
        const token = jwt.sign({id}, process.env.SECRET, {
-        expiresIn:3000 
+        expiresIn:4000 
        });
        res.cookie('token', token, {httpOnly: true}).json({
         nome: eu.nome ,
@@ -119,6 +119,6 @@ app.use(express.static('public'));
 
 
   app.listen(4000, function() {
-    console.log('App de Exemplo escutando na porta 3000!')
+    console.log('App de Exemplo escutando na porta 4000!')
   });
 

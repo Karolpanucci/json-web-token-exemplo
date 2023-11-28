@@ -33,11 +33,13 @@ export default function Login() {
       <form onSubmit={handlerLogin}>
         <input
           placeholder='E-mail'
+          name="nome"
           type="email"
           onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
         </input>
         <input
           placeholder='Senha'
+          name="senha"
           type='password'
           onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
         </input>

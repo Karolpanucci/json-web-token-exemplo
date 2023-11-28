@@ -1,11 +1,11 @@
 'use server'
 
 
-const url = "http://localhost:400"
+const url = "http://localhost:4000"
 
 
 const getUserAuthenticated = async (user) => {
-    const responseOfApi = await fetch(url +"/user/authenticated",
+    const responseOfApi = await fetch(url +"/autenticar",
     {
        cache:"no-cache",
        method:"POST",
