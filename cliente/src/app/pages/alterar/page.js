@@ -1,7 +1,7 @@
 'use client'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import './estilo.css';
+
 
  const form =  () => {
   const handlerAlterar= async (e) => {

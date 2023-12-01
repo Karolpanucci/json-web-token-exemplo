@@ -1,7 +1,9 @@
 import { getUsers } from "../../functions/handlerAcessAPI";
 import { Suspense } from "react";
 import ListUsers from "../../componente/ListUsers";
-import './estilo.css';
+
+import Sair from "../../componente/exit";
+
 
 export default async function Dashboard() {
     const users = await getUsers();
@@ -10,10 +12,13 @@ export default async function Dashboard() {
         <div>
             <Suspense fallback={<p>carregando...</p>}>
                 <ListUsers users={users} />
-
                 <a href="/pages/alterar">Alterar</a>
                 <a href="/pages/registrar">Registrar</a>
+                <Sair/>
+
+
             </Suspense>
+            
         </div>
     );
 }

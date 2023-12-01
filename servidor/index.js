@@ -45,7 +45,7 @@ app.use(express.static('public'));
       secret: process.env.SECRET,
       algorithms: ["HS256"],
       getToken: req => req.cookies.token
-    }).unless({ path: ["/autenticar", "/user/authenticated", "/deslogar", "/usuario/listar", "/usuarios/cadastrar"  ] })
+    }).unless({ path: ["/autenticar",  "/deslogar", "/user/authenticated"] })
   );
 
 
@@ -81,7 +81,7 @@ app.use(express.static('public'));
     }
     });
   
-    app.post('/autenticar', async (req, res) => {
+    app.post('/user/authenticated', async (req, res) => {
       const eu = await usuario.findOne({ where: { nome: req.body.nome, senha:crypto.encrypt( req.body.senha) } });
     
       if(eu){
@@ -89,7 +89,7 @@ app.use(express.static('public'));
        const token = jwt.sign({id}, process.env.SECRET, {
         expiresIn:4000 
        });
-       res.cookie('token', token, {httpOnly: true}).json({
+      return res.cookie('token', token, {httpOnly: true}).json({
         nome: eu.nome ,
         token: token
        }) 
