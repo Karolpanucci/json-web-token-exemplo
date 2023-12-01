@@ -17,7 +17,7 @@ export default function Sair() {
 
     return (
         <>
-            <button onClick={exit} className="flex font-bold text-[#FFCC70] p-5 mt-3 ml-auto mr-4">
+            <button onClick={exit} className="">
             <span className='ml-3'>Sair</span>
             </button>
         </>
