@@ -30,9 +30,9 @@ export default function Register(){
 
     return (
           
-            < div className=' bg-gradient-to-tl  from-gray-900 to-gray-800 w-screen h-screen '>
+  < div className=' bg-gradient-to-tl  from-gray-900 to-gray-800 w-screen h-screen '>
 
-    <header className="w-full bg-zinc-950">
+<header className="w-full bg-purple-900">
       <div className="flex w-full h-28 items-center">
         <img
           className='mt-0 ml-4 sm:ml-10'

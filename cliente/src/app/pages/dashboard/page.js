@@ -13,7 +13,7 @@ export default async function Dashboard() {
      <div className="bg-slate-800 min-h-screen items-center justify-between">
         
         <Suspense fallback={<div className="flex items-center justify-center h-screen  bg-gradient-to-tr from-[#4158D0] via-[#C850C0] via-46% to-[#FFCC70]"><p className="text-4xl text-white">Carregando...</p></div>}>
-    <header className="w-full bg-zinc-950">
+    <header className="w-full bg-purple-900">
       <div className="flex w-full h-28 items-center">
         <img
           className='mt-0 ml-4 sm:ml-10'
@@ -31,7 +31,7 @@ export default async function Dashboard() {
           </div>
           
         </div>
-        <div className="flex font-bold text-cyan-500 p-5 mt-3 ml-auto mr-4">
+        <div className="flex font-bold p-5  bg-gradient-to-tr from-[#4158D0] via-[#C850C0] via-46% to-[#FFCC70] text-white  mt-3 ml-auto mr-4 rounded-3xl">
           <LogOut />  <Sair/>
         </div>
        
@@ -44,16 +44,9 @@ export default async function Dashboard() {
 
     <main className="grid grid-cols-1 md:grid-cols-4 ml-7 mr-7 gap-4 mt-8 text-white ">
    
-    
+
              <ListUsers users={users} />
-        
-                
-                          
-                         
-
-
-                
-            </main>
+    </main>
             </Suspense>
 
 </div>
